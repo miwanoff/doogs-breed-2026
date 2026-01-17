@@ -9,6 +9,13 @@ for (let i = 0; i < irises.length; i++) {
   irises[i].addEventListener("mousedown", go);
 }
 
+let irisesState = [];
+for (let i = 0; i < irises.length; i++) {
+  // створення масиву для відстеження irises
+  irisesState[irises[i].id] = false;
+}
+console.log(irisesState);
+
 function go(event) {
   console.log(event.target.id);
   const flower = document.getElementById(event.target.id);
@@ -63,6 +70,30 @@ function go(event) {
   function res(event) {
     tan.style.border = "none";
     pink.style.border = "none";
+    // отримуємо координати квітки
+    const left = parseInt(flower.style.left);
+    const top = parseInt(flower.style.top);
+    if (onField(tan, left, top)) {
+      state.innerHTML =
+        flower.id + " сорт " + breed + " відпускаємо на поле tan!"; // записуємо у поле state
+      if (breed == "tan") {
+        irisesState[flower.id] = true;
+      } else {
+        irisesState[flower.id] = false;
+      }
+    //   console.log(irisesState);
+    }
+    if (onField(pink, left, top)) {
+      state.innerHTML =
+        flower.id + " сорт " + breed + " відпускаємо на поле pink!";
+      if (breed == "pink") {
+        irisesState[flower.id] = true;
+      } else {
+        irisesState[flower.id] = false;
+      }
+    //   console.log(irisesState);
+    }
+    console.log(irisesState);
   }
 }
 
@@ -89,4 +120,8 @@ function onField(f, left, top) {
   } else {
     return false;
   }
+}
+
+function check() {
+
 }
