@@ -48,5 +48,21 @@ function getCoords(elem) {
   return {
     top: box.top,
     left: box.left,
+    width: box.width,
+    height: box.height,
   };
+}
+
+function onField(f, left, top) {
+  let field = getCoords(f);
+  if (
+    left > field.left &&
+    left < field.left + field.width &&
+    top > field.top &&
+    top < field.top + field.height
+  ) {
+    return true;
+  } else {
+    return false;
+  }
 }
