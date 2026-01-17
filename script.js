@@ -26,6 +26,24 @@ function go(event) {
     flower.style.left = left + "px";
     flower.style.top = top + "px";
     showCoords.innerHTML = `x: ${left} y ${top}`;
+    if (onField(tan, left, top)) {
+      if (breed == "tan") {
+        tan.style.border = "solid green 2px";
+        pink.style.border = "none";
+      } else {
+        tan.style.border = "solid red 2px";
+        pink.style.border = "none";
+      }
+    }
+    if (onField(pink, left, top)) {
+      if (breed == "pink") {
+        pink.style.border = "solid green 2px";
+        tan.style.border = "none";
+      } else {
+        pink.style.border = "solid red 2px";
+        tan.style.border = "none";
+      }
+    }
   }
 
   flower.ondragstart = function () {
@@ -39,7 +57,13 @@ function go(event) {
   flower.onmouseup = function () {
     document.onmousemove = null;
     flower.onmouseup = null;
+    res(event);
   };
+
+  function res(event) {
+    tan.style.border = "none";
+    pink.style.border = "none";
+  }
 }
 
 function getCoords(elem) {
