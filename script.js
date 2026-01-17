@@ -35,6 +35,11 @@ function go(event) {
   document.onmousemove = function (e) {
     moveAt(e);
   };
+
+  flower.onmouseup = function () {
+    document.onmousemove = null;
+    flower.onmouseup = null;
+  };
 }
 
 function getCoords(elem) {
